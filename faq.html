@@ -214,7 +214,7 @@
       </style>
     </head>
 
-    <!-- ANCHOR Search Bar HTML -->
+    <!--  Search Bar HTML -->
     <div class="container">
       <div id="autocomplete"></div>
       <div id="hits" hidden></div>
@@ -222,8 +222,8 @@
     <!-- End of Search Bar -->
     <p></p>
 
-    <!--ANCHOR Start of FAQ Content -->
-
+    <!-- Start of FAQ Content -->
+    <!--ANCHOR tabsbutton -->
     <button
       class="tablink"
       onclick="openPage('NeoSeries', this, 'white')"
@@ -231,10 +231,10 @@
     >
       Neo Series
     </button>
-    <button class="tablink" onclick="openPage('LUXE', this, 'white')">
+    <button class="tablink" onclick="openPage('Luxe', this, 'white')">
       LUXE
     </button>
-    <button class="tablink" onclick="openPage('LUXELET', this, 'white')">
+    <button class="tablink" onclick="openPage('Luxelet', this, 'white')">
       LUXELET
     </button>
     <button class="tablink" onclick="openPage('ToiletSeat', this, 'white')">
@@ -614,7 +614,7 @@
         </div>
       </div>
     </div>
-
+    <!-- ANCHOR tabcontent -->
     <div id="Whift" class="tabcontent">
       <h3>Whift</h3>
       <h4>Whift</h4>
@@ -645,6 +645,7 @@
 
     <!-- SCRIPT STARTS HERE -->
     <script>
+      // ANCHOR tabhandleclick
       function openPage(pageName, elmnt, color) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
@@ -655,6 +656,7 @@
         for (i = 0; i < tablinks.length; i++) {
           tablinks[i].style.backgroundColor = "";
         }
+       
         document.getElementById(pageName).style.display = "block";
         elmnt.style.backgroundColor = color;
 
@@ -736,10 +738,19 @@
         "FTVTL5CJ9D",
         "2a422465fc0c882acd6aa2c1c53ee642"
       );
-
+      // ANCHOR layla 210501
       const index = searchClient.initIndex("clickAutoGoto");
-      index.search().then(({ hits }) => console.log(hits));
-
+      index.search().then(({ hits }) => {
+        hits.map(hit=>{
+          document.querySelector(
+          ".rte"
+        ).innerHTML += " <div id='"+hit.catLv1+"' class='tabcontent'><h3>"+hit.q+"</h3>"
+      
+    
+      });
+        })
+        
+      //
       const autocomplete = instantsearch.connectors.connectAutocomplete(
         ({ indices, refine, widgetParams }, isFirstRendering) => {
           const { container, onSelectChange } = widgetParams;
