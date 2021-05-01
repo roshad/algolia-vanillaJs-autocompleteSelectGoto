@@ -231,10 +231,10 @@
     >
       Neo Series
     </button>
-    <button class="tablink" onclick="openPage('Luxe', this, 'white')">
+    <button id="LuxeClick" class="tablink" onclick="openPage('Luxe', this, 'white')">
       LUXE
     </button>
-    <button class="tablink" onclick="openPage('Luxelet', this, 'white')">
+    <button id="LuxeletClick" class="tablink" onclick="openPage('Luxelet', this, 'white')">
       LUXELET
     </button>
     <button class="tablink" onclick="openPage('ToiletSeat', this, 'white')">
@@ -615,6 +615,7 @@
       </div>
     </div>
     <!-- ANCHOR tabcontent -->
+    <div id="tabContents"></div>
     <div id="Whift" class="tabcontent">
       <h3>Whift</h3>
       <h4>Whift</h4>
@@ -656,7 +657,7 @@
         for (i = 0; i < tablinks.length; i++) {
           tablinks[i].style.backgroundColor = "";
         }
-       
+
         document.getElementById(pageName).style.display = "block";
         elmnt.style.backgroundColor = color;
 
@@ -738,19 +739,19 @@
         "FTVTL5CJ9D",
         "2a422465fc0c882acd6aa2c1c53ee642"
       );
-      // ANCHOR layla 210501
-      const index = searchClient.initIndex("clickAutoGoto");
+      //ANCHOR layla 210501
+       const index = searchClient.initIndex("clickAutoGoto");
       index.search().then(({ hits }) => {
-        hits.map(hit=>{
-          document.querySelector(
-          ".rte"
-        ).innerHTML += " <div id='"+hit.catLv1+"' class='tabcontent'><h3>"+hit.q+"</h3>"
-      
-    
+        hits.map((hit) => {
+          document.querySelector("#tabContents").innerHTML +=
+            " <div id='" +
+            hit.catLv1 +
+            "' class='tabcontent'><h3>" +
+            hit.q +
+            "</h3>";
+        });
       });
-        })
-        
-      //
+
       const autocomplete = instantsearch.connectors.connectAutocomplete(
         ({ indices, refine, widgetParams }, isFirstRendering) => {
           const { container, onSelectChange } = widgetParams;
@@ -763,7 +764,7 @@
             container.find("input").selectize({
               options: [],
               valueField: "q",
-              labelField: "a",
+              labelField: "q",
               highlight: false,
               onType: refine,
               onBlur() {
@@ -792,6 +793,24 @@
           });
         }
       );
+
+      const suggestions = instantsearch({
+        indexName: "clickAutoGoto",
+        searchClient,
+      });
+
+      suggestions.addWidgets([
+        instantsearch.widgets.configure({
+          hitsPerPage: 3,
+        }),
+        autocomplete({
+          container: $("#autocomplete"),
+          onSelectChange(value) {
+            index.search(value).then(({hits})=>document.querySelector("#"+hits[0].catLv1+"Click").click())
+          },
+        }),
+      ]);
+      suggestions.start();
       // const search = instantsearch({
       //   indexName: "clickAutoGoto",
       //   searchClient,
@@ -818,24 +837,6 @@
       //           }),
       //         ]);
       // search.start();
-      const suggestions = instantsearch({
-        indexName: "clickAutoGoto",
-        searchClient,
-      });
-
-      suggestions.addWidgets([
-        instantsearch.widgets.configure({
-          hitsPerPage: 3,
-        }),
-        autocomplete({
-          container: $("#autocomplete"),
-          onSelectChange(value) {
-            search.helper.setQuery(value).search();
-          },
-        }),
-      ]);
-
-      suggestions.start();
     </script>
   </div>
 </div>
