@@ -1,0 +1,830 @@
+<div class="main-content-faq" style="background-color: #f3f8fb">
+  <div class="text-center" style="padding-top: 55px">
+    <h1>{{page.title}}</h1>
+  </div>
+
+  <div class="rte">
+    <head>
+      <meta charset="utf-8" />
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.1.0/themes/algolia.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/selectize@0.12.6/dist/css/selectize.css"
+      />
+
+      <style>
+        * {
+          box-sizing: border-box;
+        }
+
+        /* Set height of body and the document to 100% */
+        body,
+        html {
+          height: 100%;
+          margin: 0;
+          font-family: Arial;
+        }
+
+        /* Style tab links */
+        .tablink {
+          background-color: #f3f8fb;
+          color: black;
+          float: left;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          padding: 14px 16px;
+          font-size: 15px;
+          width: 14.2857%;
+          height: 60px;
+          border-bottom: 3px solid transparent;
+        }
+
+        .tablink:hover {
+          background-color: lightgray;
+        }
+
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+          color: black;
+          display: table;
+          padding: 100px 10px;
+          height: 100%;
+        }
+
+        .identify-parts-button {
+          border: solid 1px #293b5a;
+          width: 100%;
+          height: 158px;
+          background-color: #eae4dc;
+          text-align: left;
+          margin-top: 2em;
+        }
+
+        .contact-us-button {
+          border: solid 1px #293b5a;
+          padding-left: 2em;
+          width: 100%;
+          height: 205px;
+          background-color: #293b5a;
+          text-align: left;
+          color: white;
+        }
+
+        .container {
+          max-width: 960px;
+          margin: 0 auto;
+          padding: 1em;
+        }
+
+        .ais-hits {
+          margin-top: 1em;
+        }
+
+        .hit-name {
+          margin-bottom: 0.5em;
+        }
+
+        .hit-description {
+          color: #888;
+          font-size: 14px;
+          margin-bottom: 0.5em;
+        }
+
+        /* Create two equal columns that floats next to each other */
+        .column {
+          float: left;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+
+        .accordion {
+          background-color: #f3f8fb;
+          color: #444;
+          cursor: pointer;
+          padding: 18px;
+          width: 100%;
+          border: none;
+          text-align: left;
+          outline: none;
+          font-size: 15px;
+          transition: 0.4s;
+        }
+
+        .active {
+          background-color: #f3f8fb;
+        }
+
+        .accordion:hover {
+          background-color: lightgray;
+        }
+
+        .panel {
+          padding: 0 18px;
+          display: none;
+          background-color: white;
+          overflow: hidden;
+        }
+
+        .panel a:hover {
+          text-decoration: underline;
+          color: gray;
+        }
+
+        li {
+          margin: 10px;
+          text-decoration: none;
+        }
+
+        .nav {
+          background-color: white;
+          width: 25%;
+          border-right: 1px solid lightgray;
+          padding: 40px 10px 40px 40px;
+        }
+
+        .drop-nav {
+          background-color: white;
+        }
+        .drop-nav a {
+          text-decoration: none;
+          color: #818181;
+          display: block;
+          font-size: 16px;
+        }
+
+        .drop-nav a:active {
+          text-decoration: none;
+          background-color: white;
+          color: black;
+        }
+
+        .drop-nav a:hover {
+          text-decoration: none;
+          background-color: white;
+          color: black;
+        }
+
+        .drop-nav a:focus {
+          text-decoration: none;
+          background-color: white;
+          color: black;
+        }
+
+        .drop-nav > ul {
+          display: none;
+        }
+
+        .drop-nav.active > ul {
+          display: block;
+        }
+
+        #NeoSeries {
+          background-color: white;
+        }
+        #LUXE {
+          background-color: white;
+        }
+        #LUXELET {
+          background-color: white;
+        }
+        #ToiletSeat {
+          background-color: white;
+        }
+        #WaterFilter {
+          background-color: white;
+        }
+        #FootStool {
+          background-color: white;
+        }
+        #Whift {
+          background-color: white;
+        }
+      </style>
+    </head>
+
+    <!-- ANCHOR Search Bar HTML -->
+    <div class="container">
+      <div id="autocomplete"></div>
+      <div id="hits" hidden></div>
+    </div>
+    <!-- End of Search Bar -->
+    <p></p>
+
+    <!--ANCHOR Start of FAQ Content -->
+
+    <button
+      class="tablink"
+      onclick="openPage('NeoSeries', this, 'white')"
+      id="defaultOpen"
+    >
+      Neo Series
+    </button>
+    <button class="tablink" onclick="openPage('LUXE', this, 'white')">
+      LUXE
+    </button>
+    <button class="tablink" onclick="openPage('LUXELET', this, 'white')">
+      LUXELET
+    </button>
+    <button class="tablink" onclick="openPage('ToiletSeat', this, 'white')">
+      Toilet Seat
+    </button>
+    <button class="tablink" onclick="openPage('WaterFilter', this, 'white')">
+      Water Filter
+    </button>
+    <button class="tablink" onclick="openPage('FootStool', this, 'white')">
+      Foot Stool
+    </button>
+    <button class="tablink" onclick="openPage('Whift', this, 'white')">
+      Whift
+    </button>
+
+    <div id="NeoSeries" class="tabcontent">
+      <div class="row">
+        <!-- SIDE NAV LIST -->
+        <div class="column nav">
+          <ul style="list-style-type: none; font-weight: bold">
+            <li class="drop-nav">
+              <a
+                href="#"
+                onclick="openFAQ('before-you-buy', this, 'white')"
+                id="defaultNeoSeriesFAQ"
+                >Before You Buy</a
+              >
+            </li>
+            <li class="drop-nav">
+              <a
+                href="#replacements"
+                onclick="openFAQ('replacements', this, 'white')"
+                >Replacements</a
+              >
+            </li>
+            <li class="drop-nav">
+              <a
+                href="#troubleshooting"
+                onclick="openFAQ('troubleshooting', this, 'white')"
+                >Troubleshooting</a
+              >
+            </li>
+            <li class="drop-nav">
+              <a
+                href="#installation-help"
+                onclick="openFAQ('installation-help', this, 'white')"
+                >Installation Help</a
+              >
+              <ul style="list-style-type: none; font-weight: normal">
+                <li class="drop-nav">
+                  <a
+                    style="font-size: 15px"
+                    href="#"
+                    onclick="openFAQ('general-installation', this, 'white')"
+                  >
+                    General Installation
+                  </a>
+                </li>
+                <li class="drop-nav">
+                  <a style="font-size: 15px" href="#"
+                    >Trouble with Part Sizing</a
+                  >
+                </li>
+                <li class="drop-nav">
+                  <a style="font-size: 15px" href="#"
+                    >Trouble with Toilet Arrangement</a
+                  >
+                </li>
+                <li class="drop-nav">
+                  <a style="font-size: 15px" href="#"
+                    >Post-Installation Troubleshooting</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="drop-nav">
+              <a
+                href="#shipping-orders"
+                onclick="openFAQ('shipping-orders', this, 'white')"
+                >Shipping & Orders</a
+              >
+            </li>
+            <li class="drop-nav">
+              <a
+                href="#about-bidets"
+                onclick="openFAQ('about-bidets', this, 'white')"
+                >About Bidets</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div
+          class="column"
+          style="background-color: white; width: 70%; padding-left: 60px"
+        >
+          <div id="before-you-buy" class="colcontent">
+            <p>Neo Series > Before You Buy</p>
+            <h2>Before You Buy</h2>
+            <button class="accordion">Section 1</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+            <button class="accordion">Section 2</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+            <button class="accordion">Section 3</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+
+          <div id="replacements" class="colcontent">
+            <p>Neo Series > Replacements</p>
+            <h2>Replacements</h2>
+            <button class="accordion">Section 1</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+            <button class="accordion">Section 2</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+            <button class="accordion">Section 3</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+
+          <div id="troubleshooting" class="colcontent">
+            <p>Neo Series > Troubleshooting</p>
+            <h2>Troubleshooting</h2>
+            <button class="accordion">Section 1</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+            <button class="accordion">Section 2</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+            <button class="accordion">Section 3</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+
+          <div id="installation-help" class="colcontent">
+            <p>Neo Series > Installation Help</p>
+            <h2>Installation Help</h2>
+            <p>
+              We're here to help with any trouble you encountered during
+              installation
+            </p>
+            <hr />
+            <button class="accordion">General Installation</button>
+            <div class="panel">
+              <p>
+                <a
+                  href="#"
+                  onclick="openFAQcb('general-installation', this, 'white', 'general-installation-q1',openQAPage)"
+                  >How should I use the teflon tape?</a
+                >
+              </p>
+              <p>
+                <a
+                  href="#"
+                  onclick="openFAQcb('general-installation', this, 'white', 'general-installation-q2',openQAPage)"
+                  >My toilet seat bolts are not removable</a
+                >
+              </p>
+              <p>
+                <a
+                  href="#"
+                  onclick="openFAQcb('general-installation', this, 'white', 'general-installation-q3',openQAPage)"
+                  >How do I install my LUXE bidet on a twist-hinge toilet
+                  seat?</a
+                >
+              </p>
+            </div>
+
+            <button class="accordion">Trouble with Part Sizing</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+            <button class="accordion">Trouble with Toilet Arrangement</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+            <button class="accordion">Post-Installation Troubleshooting</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+
+          <div id="general-installation" class="colcontent">
+            <p>Neo Series > Installation Help > General Installation</p>
+            <h2>General Installation</h2>
+            <p>
+              We're here to help with any trouble you encountered during
+              installation
+            </p>
+            <hr />
+
+            <button class="accordion" id="general-installation-q1">
+              How should I use the teflon tape?
+            </button>
+            <div class="panel">
+              <p>
+                The teflon tape is used to thread accessories, helping to
+                prevent leaks. The teflon tape is optional. If you feel you need
+                a sturdier fir between between the female and male ends of an
+                accessory, please thread the female end with teflon tape.
+              </p>
+              <p>Teflon tape is available on our website here</p>
+            </div>
+
+            <button class="accordion" id="general-installation-q2">
+              My toilet seat bolts are not removable
+            </button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+            <button class="accordion" id="general-installation-q3">
+              How do I install my LUXE bidet on a twist-hinge toilet seat
+            </button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+
+          <div id="shipping-orders" class="colcontent">
+            <p>Neo Series > Shipping & Orders</p>
+            <h2>Shipping & Orders</h2>
+            <button class="accordion">Section 1</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+            <button class="accordion">Section 2</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+            <button class="accordion">Section 3</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+
+          <div id="about-bidets" class="colcontent">
+            <p>Neo Series > About Bidets</p>
+            <h2>About Bidets</h2>
+            <button class="accordion">Section 1</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+            <button class="accordion">Section 2</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+            <button class="accordion">Section 3</button>
+            <div class="panel">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="Whift" class="tabcontent">
+      <h3>Whift</h3>
+      <h4>Whift</h4>
+    </div>
+
+    <div style="width: 100%; background-color: white; padding: 2em 2em">
+      <div class="row">
+        <div class="column nav" style="border-right: 1px solid white">
+          <button class="identify-parts-button">
+            <h4>Having Troubles Identifying Parts?</h4>
+          </button>
+        </div>
+
+        <div
+          class="column"
+          style="color: white; width: 70%; padding: 40px 10px 40px 40px"
+        >
+          <button class="contact-us-button">
+            <h4>Couldn't Find What you Need?</h4>
+            <p style="color: white">
+              We are here to help you with any trouble you encounter during
+              installation
+            </p>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPT STARTS HERE -->
+    <script>
+      function openPage(pageName, elmnt, color) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName).style.display = "block";
+        elmnt.style.backgroundColor = color;
+
+        if (pageName === "NeoSeries") {
+          document.getElementById("defaultNeoSeriesFAQ").click();
+        }
+      }
+
+      function openFAQ(FAQName, elmnt, color) {
+        var i, tabcontent, tablinks;
+        colcontent = document.getElementsByClassName("colcontent");
+        for (i = 0; i < colcontent.length; i++) {
+          colcontent[i].style.display = "none";
+        }
+        document.getElementById(FAQName).style.display = "block";
+        elmnt.style.backgroundColor = color;
+      }
+
+      function openAnswer(question) {
+        document.getElementById(question).click();
+      }
+
+      function openFAQcb(FAQName, elmnt, color, question, callback) {
+        var i, tabcontent, tablinks;
+        colcontent = document.getElementsByClassName("colcontent");
+        for (i = 0; i < colcontent.length; i++) {
+          colcontent[i].style.display = "none";
+        }
+        document.getElementById(FAQName).style.display = "block";
+        elmnt.style.backgroundColor = color;
+
+        callback(question);
+      }
+
+      function openQAPage(pageName) {
+        document.getElementById(pageName).click();
+      }
+
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+    </script>
+    <script>
+      var acc = document.getElementsByClassName("accordion");
+      var i;
+
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+          this.classList.toggle("active");
+          var panel = this.nextElementSibling;
+          if (panel.style.display === "block") {
+            panel.style.display = "none";
+          } else {
+            panel.style.display = "block";
+          }
+        });
+      }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      $(".drop-nav").on("click", function (e) {
+        e.preventDefault();
+        // don't allow the event to fire horizontally or vertically up the tree
+        e.stopImmediatePropagation();
+        // switch the active class that you can use to display the child
+        $(this).toggleClass("active");
+      });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/selectize@0.12.6/dist/js/standalone/selectize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4"></script>
+
+    <script>
+      /* global $ instantsearch algoliasearch */
+
+      const searchClient = algoliasearch(
+        "FTVTL5CJ9D",
+        "2a422465fc0c882acd6aa2c1c53ee642"
+      );
+
+      const index = searchClient.initIndex("clickAutoGoto");
+      index.search().then(({ hits }) => console.log(hits));
+
+      const autocomplete = instantsearch.connectors.connectAutocomplete(
+        ({ indices, refine, widgetParams }, isFirstRendering) => {
+          const { container, onSelectChange } = widgetParams;
+
+          if (isFirstRendering) {
+            container.html(
+              '<input id="ais-autocomplete" placeholder="Search question">'
+            );
+
+            container.find("input").selectize({
+              options: [],
+              valueField: "q",
+              labelField: "a",
+              highlight: false,
+              onType: refine,
+              onBlur() {
+                refine(this.getValue());
+              },
+              score() {
+                return function () {
+                  return 1;
+                };
+              },
+              onChange(value) {
+                onSelectChange(value);
+                refine(value);
+              },
+            });
+
+            return;
+          }
+
+          const [input] = container.find("input");
+
+          indices.forEach((index) => {
+            input.selectize.clearOptions();
+            index.results.hits.forEach((h) => input.selectize.addOption(h));
+            input.selectize.refreshOptions(input.selectize.isOpen);
+          });
+        }
+      );
+      // const search = instantsearch({
+      //   indexName: "clickAutoGoto",
+      //   searchClient,
+      // });
+      //         search.addWidgets([
+      //           instantsearch.widgets.configure({
+      //             hitsPerPage: 5,
+      //           }),
+      //           instantsearch.widgets.hits({
+      //             container: "#tabs",
+      //             templates: {
+      //               item: `
+
+      //                     <div>
+      //                       <header class="hit-name">
+      //                         {{#helpers.highlight}}{ "attribute": "Question" }{{/helpers.highlight}}
+      //                       </header>
+      //                       <p class="hit-description">
+      //                         {{#helpers.highlight}}{ "attribute": "Answer" }{{/helpers.highlight}}
+      //                       </p>
+      //                     </div>
+      // `,
+      //             },
+      //           }),
+      //         ]);
+      // search.start();
+      const suggestions = instantsearch({
+        indexName: "clickAutoGoto",
+        searchClient,
+      });
+
+      suggestions.addWidgets([
+        instantsearch.widgets.configure({
+          hitsPerPage: 3,
+        }),
+        autocomplete({
+          container: $("#autocomplete"),
+          onSelectChange(value) {
+            search.helper.setQuery(value).search();
+          },
+        }),
+      ]);
+
+      suggestions.start();
+    </script>
+  </div>
+</div>
